@@ -365,12 +365,12 @@
             <li><a>path</a> The VSS-defined path to a node in the VSS tree.</li>
             <li><a>filter</a> Additional parameters to refine the requested data.</li>
             <li><a>authorization</a> The authorization token.</li>
-            <li><a>data compression</a> The compression scheme(s) used for transmitted data.</li>
+            <li>data compression The compression scheme(s) used for transmitted data.</li>
           </ul>
           </p>
           <p>Success response, of which authorization is optional:
             <ul>
-              <li><a>data</a> A structure containing one or more sets of a path and data point.</li>
+              <li>data A structure containing one or more sets of a path and data point.</li>
               <li style="margin-left: 40px"><a>path</a> The VSS-defined path for the associated data point.</li>
               <li style="margin-left: 40px"><a>data point</a> A structure containing one or more value-timestamp tuples.</li>
               <li style="margin-left: 80px"><a>value</a> The latest available value.
@@ -420,7 +420,7 @@
               <li><a>path</a> The VSS-defined path to a node in the VSS tree.</li>
               <li><a>filter</a> A rule set defining the triggering criteria for asynchronous event messages.</li>
               <li><a>authorization</a> The authorization token.</li>
-              <li><a>data compression</a> The compression scheme(s) used for transmitted data.</li>
+              <li>data compression The compression scheme(s) used for transmitted data.</li>
             </ul>
           </p>
           <p>Success response, of which authorization is optional:
@@ -458,7 +458,7 @@
           <p>Arguments, of which all are mandatory:
             <ul>
               <li><a>subscriptionId</a> A unique identifier for the subscription session.</li>
-              <li><a>data</a> A structure containing one or more sets of a path and data point.</li>
+              <li>data A structure containing one or more sets of a path and data point.</li>
               <li style="margin-left: 40px"><a>path</a> The VSS-defined path for the associated data point.</li>
               <li style="margin-left: 40px"><a>data point</a> A structure containing one or more value-timestamp tuples.</li>
               <li style="margin-left: 80px"><a>value</a> The current value associated with the filter expression.</li>
@@ -2676,6 +2676,7 @@
         When a client has obtained the information how to connect to the server, then the server MUST respond to read requests for data from the Server tree.
         </p>
 
+        <section>
         <h3>Server Tree</h3>
         <p>
         The Server tree MUST contain the structures listed below. Additional parts are optional.
@@ -2852,7 +2853,9 @@
           If a server e. g. supports file transfer upload and download then this shall be found at the Support branch,
           and then on the Config branch it shall be registered for which transport protocol(s) it is supported, and e. g. which port number is then used.
           Configuration data that is given a value in the specification documents does not have to be present on the Config branch.
+        </section>
  
+        <section>
         <h3>Server Feature Naming</h3>
         <p>
         The feature names that are used in the Server tree should for the features described in this specification use the names listed below.
@@ -2887,31 +2890,31 @@
           </tr>
           <tr>
             <td>timebased</td>
-            <td><a href="#timebased-filter-operation"></a></td>
+            <td><a href="timebased-filter-operation"></a></td>
           </tr>
           <tr>
             <td>change</td>
-            <td><a href="#change-filter-operation"></a></td>
+            <td><a href="change-filter-operation"></a></td>
           </tr>
           <tr>
             <td>paths</td>
-            <td><a href="#paths-filter-operation"></a></td>
+            <td><a href="paths-filter-operation"></a></td>
           </tr>
           <tr>
             <td>range</td>
-            <td><a href="#range-filter-operation"></a></td>
+            <td><a href="range-filter-operation"></a></td>
           </tr>
           <tr>
             <td>curvelog</td>
-            <td><a href="#curvelog-filter-operation"></a></td>
+            <td><a href="curvelog-filter-operation"></a></td>
           </tr>
           <tr>
             <td>history</td>
-            <td><a href="#history-filter-operation"></a></td>
+            <td><a href="history-filter-operation"></a></td>
           </tr>
           <tr>
             <td>metadata</td>
-            <td><a href="#metadata-request"></a></td>
+            <td><a href="metadata-request"></a></td>
           </tr>
         </table><br>
 
@@ -2956,11 +2959,11 @@
           </tr>
           <tr>
             <td>accesscontrol</td>
-            <td><a href="#access-control-model"></a></td>
+            <td><a href="access-control-model"></a></td>
           </tr>
           <tr>
             <td>consent</td>
-            <td><a href="#consent-support"></a></td>
+            <td><a href="consent-support"></a></td>
           </tr>
         </table><br>
 
@@ -2971,19 +2974,20 @@
           </tr>
           <tr>
             <td>short_term</td>
-            <td><a href="#access-control-flows"></a></td>
+            <td><a href="access-control-flows"></a></td>
           </tr>
           <tr>
             <td>long_term</td>
-            <td><a href="#access-control-flows"></a></td>
+            <td><a href="access-control-flows"></a></td>
           </tr>
           <tr>
             <td>signalset_claim</td>
-            <td><a href="#access-token"></a></td>
+            <td><a href="access-token"></a></td>
           </tr>
         </table><br>
 
         </p>
+        <section>
     </section>
 
     <section id="file-transfer" class="appendix">
@@ -3115,6 +3119,8 @@
           </code></pre>
         The Types.Resources.FileDescriptor definition in the Types tree must mirror the struct definition above.
           </p>
+
+        <section>
         <h3>Data channel realization</h3>
         <p>
         If file transfer is realized over any supported transport protocol, this must then be shown in the server capabilities tree,
@@ -3128,6 +3134,9 @@
         The recommended mechanism for MQTT is to assing a separate topic name to the data channel.
         The recommended topic name is created by appending "/datachannel" to the topic name of the control channel.
         </p>
+        </section>
+
+        <section>
         <h3>Alternative based on well-known file transfer protocols</h3>
         <p>
         There exists a number of common file transfer protocols e. g. ftp, sftp, ftps,
@@ -3153,10 +3162,11 @@
           Information about the vehicle file system structure, such as the file path information, shall not be exposed to the client.
           The server may use the VSS path as a key into a lookup table for accessing the file in the vehicle file system.
         </p>
+        </section>
     </section>
 
     <section id="data-compression" class="appendix">
-        <h2><dfn data-dfn-type="dfn" id="dfn-dc">Data Compression</dfn></h2>
+        <h2>Data Compression</h2>
         <em>This appendix is non-normative.</em>
         <p>
         The primary payload format is JSON, which is text based and thus may lead to large messages in terms of bytes.
@@ -3201,6 +3211,7 @@
         If a client request for data compression is not supported, or impossible to realize, the server shall respond with an error message.
         </p>
 
+        <section>
         <h3>Static UID Path Compression</h3>
         <p>
         To enable the server to support this path compression the VSS tree must include the static UIDs for each node.
@@ -3212,7 +3223,9 @@
         <a data-link-type="dfn" href="https://github.com/COVESA/vss-tools/blob/master/docs/id.md">VSS-tools description</a>.<br>
         The server shall respond with an error message if the client applies the path compression in its request.
         </p>
+        </section>
 
+        <section>
         <h3>Request Local Path Compression</h3>
         <p>
         The principle for request local path compression is that the server will in the response message(s) replace the path(s) with an integer index.
@@ -3223,7 +3236,9 @@
         i. e. the first path in the sorted list is assigned the value zero, the second the value 1, and so on.
         The index logically represent an integer value but it is in the message payload represented as a string.
         </p>
+        </section>
 
+        <section>
         <h3>Request Relative Timestamp Compression</h3>
         <p>
         The request relative time stamp compression builds on that response messages always contain a timestamp that represent
@@ -3235,7 +3250,9 @@
         The client will be able to analyze whether it is a compressed timestamp or not by examining the first character of the string.
         If it is an integer it is an uncompressed timestamp, as the compressed timestamps starts with a plus or a minus character.
         </p>
+        </section>
 
+        <section>
         <h3>Sequence Diagram Compression Scheme Examples</h3>
         <p>
         The sequence diagram below shows client Get requests for the vehicle speed signal where different combinations of compression schemes are used.
@@ -3258,6 +3275,7 @@
 {"action":"subscription","data":[{"dp":{"ts":"-15","value":"56.03"},"path":"0"},{"dp":{"ts":"-15","value":"12.37"},"path":"1"}],"subscriptionId":"1","ts":"2025-01-10T11:46:15.956Z"}
           </code></pre>
         </p>
+        </section>
     </section>
 
   </body>
