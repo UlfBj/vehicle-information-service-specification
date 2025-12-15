@@ -36,9 +36,10 @@ To see the most recent HTML rendered version of the specifications from this rep
 The [VISS explainer](./VISS-explainer.md) gives some background and rationale to this interface.
 
 ## Latest version
-[VISS version 2.0](https://github.com/COVESA/vehicle-information-service-specification/releases/tag/v2.0)
+[VISS version 3.0](https://github.com/COVESA/vehicle-information-service-specification/releases/tag/v3.0)
 
 ## Previous versions
+[VISS version 2.0](https://github.com/COVESA/vehicle-information-service-specification/releases/tag/v2.0)
 [VISS version 1](https://www.w3.org/TR/vehicle-information-service/)
 
 ## Reference Implementation
