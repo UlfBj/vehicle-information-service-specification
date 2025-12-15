@@ -40,6 +40,7 @@ The [VISS explainer](./VISS-explainer.md) gives some background and rationale to
 
 ## Previous versions
 [VISS version 2.0](https://github.com/COVESA/vehicle-information-service-specification/releases/tag/v2.0)
+
 [VISS version 1](https://www.w3.org/TR/vehicle-information-service/)
 
 ## Reference Implementation
