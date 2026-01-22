@@ -439,7 +439,7 @@
     <section id="transport-protocols">
       <h2>Transport Protocols</h2>
       <p>
-      The VISSv3.1 specification lists the transport protocols HTTP, WebSocket, gRPC, and MQTT as supported.
+      The VISSv3.1 specification lists the transport protocols HTTP, WebSocket, gRPC, UDS, and MQTT as supported.
       However, this is not necessarily a final list as says that any protocol that transport the primary payloads of this specification,
       or an encoded version of the primary payloads, can be included on this list.<br>
       The specification does not mandate the use of a specific transport protocol,
@@ -1623,6 +1623,16 @@
       This code can be implemented in different languages, and is out of scope for the VISS standardization.
       An example implementation in the Go programming language can be found
       <a href="https://github.com/COVESA/vissr/blob/master/utils/grcputils.go">here</a>.
+      </p>
+    </section>
+
+    <section id="uds">
+      <h2>Unix Domain Sockets</h2>
+      <p>
+      The UDS protocol SHALL be used with the primary payload format without any deviations.
+      The sockfile that the server uses to listen on the channel SHALL have the name "udsMgr.sock".
+      The file shall be stored in a directory that is accessible by clients having non-superuser access permissions to the file system.
+      In Linux an example is "/var/tmp/vissv2/". The Server capabilities tree SHALL contain the path and file name of the socket file.
       </p>
     </section>
       </section>

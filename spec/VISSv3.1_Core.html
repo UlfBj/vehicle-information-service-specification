@@ -182,9 +182,9 @@
          VSS rule set for how to define the content of a tree it refers to the
          HIM data profile rule set. This enables also other trees than the VSS
          tree to be used, a server may manage a set of trees, a forest, that a
-         client can access. Other changes are minor adaptations to support the
-         concept of having a forest of trees, such as adding support for a
-         client to do a forest inquiry.
+         client can access. Other changes are support for the Unix domain socket protocol,
+         and minor adaptations to support the concept of having a forest of trees,
+         such as adding support for a client to do a forest inquiry.
       </p>
       <p>
          There are three parts to this specification, CORE, [[TRANSPORT]], and
@@ -1321,8 +1321,14 @@
                configuration file except for the "local" property which holds
                the path to the tree in the local file system.<br>
                The forest inquiry request is the only request type that is
-               allowed on the HIM configuration file data, all others will be
-               returned by an error response.
+               allowed on the HIM configuration file data, all others will
+               get an error response.<br>
+               A server that does not utilize a HIM file for representing the set of trees it manages,
+               if it e. g. manages a predefined, static set of trees,
+               MUST be able to respond to the request e. g. by having a predefined, static response
+               describing the trees it manages.
+               The response shall have the same content as if it was created
+               from a HIM configuration file describing the forest.
             </p>
          </section>
       </section>
@@ -4044,6 +4050,17 @@
                   >
                </td>
             </tr>
+            <tr>
+               <td>uds</td>
+               <td>
+                  [[TRANSPORT]], Transport Protocols:
+                  <a
+                     data-link-type="dfn"
+                     href="https://rawcdn.githack.com/COVESA/vehicle-information-service-specification/cd130fddc04ab7806c779201cf5ba33a5299a3f0/spec/VISSv3.0_Transport.html#uds"
+                     >section 5.5 Unix Domain Sockets</a
+                  >
+               </td>
+            </tr>
          </table>
          <br>
 
@@ -4106,7 +4123,7 @@
             </tr>
             <tr>
                <td>pathuid</td>
-               <td>Static UID path compresion</td>
+               <td>Static UID path compression</td>
             </tr>
             <tr>
                <td>pathlocal</td>

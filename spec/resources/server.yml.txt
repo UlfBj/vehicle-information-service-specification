@@ -127,6 +127,15 @@ Server.Config.Protocol.Grpc.Protobuf.PortNum:
   datatype: uint32
   description: gRPC port number for the protobuf encoded payload format.
 
+Server.Config.Protocol.Uds:
+  type: branch
+  description: Top branch for the server supported Unix Domain Socket protocol.
+
+Server.Config.Protocol.Uds.Socket:
+  type: attribute
+  datatype: string
+  description: UDS socket file path.
+
 Server.Config.AccessControl:
   type: branch
   description: Access control configuration.
