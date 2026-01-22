@@ -56,6 +56,7 @@ The Adaptive AUTOSAR R24-11 official publication.
 - [Technical Report on VSS Representation](https://www.autosar.org/fileadmin/standards/R24-11/AP/AUTOSAR_AP_TR_VSSRepresentation.pdf)
 - [Adaptive Platform Release Overview](https://www.autosar.org/fileadmin/standards/R24-11/AP/AUTOSAR_AP_TR_ReleaseOverview.pdf)
 
+COVESA EU Data Act: [Recommendation](https://github.com/COVESA/eu-data-act/blob/main/arguments/covesa-specifications-for-eu-data-act.md)
 ## Tools
 
 - [ReSpec](https://www.w3.org/respec/) has been used to style the specifications allowing the editors to focus on functionality and ensure consistency and referential integrity
