@@ -634,7 +634,10 @@
                does not guarantee that the actuation attempt to change to the
                updated target value has, or will, succeed. A client may monitor
                the actuation progress through subsequent reads of the actuator
-               value.
+               value.<br>
+               The server MAY use the timestamp from the request to discard requests
+               that are older than the latest previously received request,
+               followed by an error response.
             </p>
             Arguments, of which path and value are mandatory:
             <ul>
@@ -646,6 +649,9 @@
                   specified path.
                </li>
                <li><a>authorization</a> The authorization token.</li>
+               <li>
+                  <a>timestamp</a> The client dispatch time of the request.
+               </li>
             </ul>
             Success response, of which authorization is optional:
             <ul>

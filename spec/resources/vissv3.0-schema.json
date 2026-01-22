@@ -172,6 +172,10 @@
                         "requestId": {
                             "description": "The request id",
                             "type": "string"
+                        },
+                        "ts": {
+                            "description": "The time stamp",
+                            "type": "string"
                         }
                     },
                     "required": [
