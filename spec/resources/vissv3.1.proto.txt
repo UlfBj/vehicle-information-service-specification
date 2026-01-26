@@ -1,3 +1,4 @@
+
 syntax = "proto3";
 package grpcProtobufMessages;
 
@@ -178,3 +179,4 @@ message UnsubscribeResponseMessage {
         optional string RequestId = 3;
         string Ts = 4;
 }
+

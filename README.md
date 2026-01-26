@@ -21,7 +21,7 @@ Ulf Björkengren - Ford Motor Company
 ### Working group meetings
 The VISS working group meets every other Monday at 16.00 CET.
 The schedule and link to meeting can be found [here](https://wiki.covesa.global/display/WIK4/COVESA+Common+Meeting+Schedule).<br>
-Minutes of meetings is found [here](https://wiki.covesa.global/display/WIK4/VISS+Meeting+Topics+and+Meeting+Notes).
+Minutes of meetings is found [here](https://covesa.atlassian.net/wiki/spaces/WIK4/pages/39068133/VISS+Meeting+Topics+and+Meeting+Notes).
 
 ## Overview
 
@@ -40,6 +40,7 @@ The [VISS explainer](./VISS-explainer.md) gives some background and rationale to
 
 ## Previous versions
 [VISS version 2.0](https://github.com/COVESA/vehicle-information-service-specification/releases/tag/v2.0)
+
 [VISS version 1](https://www.w3.org/TR/vehicle-information-service/)
 
 ## Reference Implementation
@@ -55,6 +56,7 @@ The Adaptive AUTOSAR R24-11 official publication.
 - [Technical Report on VSS Representation](https://www.autosar.org/fileadmin/standards/R24-11/AP/AUTOSAR_AP_TR_VSSRepresentation.pdf)
 - [Adaptive Platform Release Overview](https://www.autosar.org/fileadmin/standards/R24-11/AP/AUTOSAR_AP_TR_ReleaseOverview.pdf)
 
+COVESA EU Data Act: [Recommendation](https://github.com/COVESA/eu-data-act/blob/main/arguments/covesa-specifications-for-eu-data-act.md)
 ## Tools
 
 - [ReSpec](https://www.w3.org/respec/) has been used to style the specifications allowing the editors to focus on functionality and ensure consistency and referential integrity
