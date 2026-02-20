@@ -563,7 +563,7 @@
                 <tr><td><a href="#dfn-path">path</a></td><td>string</td><td>Yes</td></tr>
 	              <tr><td><a href="#dfn-filter">filter</a></td><td>string</td><td>Optional</td></tr>		
                 <tr><td><a href="#dfn-authorization">authorization</a></td><td>string</td><td>Optional</td></tr>
-                <tr><td><a href="#dfn-data-compression">data compression</a></td><td>string</td><td>Optional</td></tr>
+                <tr><td><a href="#dfn-data-compression">dc</a></td><td>string</td><td>Optional</td></tr>
                 <tr><td><a href="#dfn-requestid">requestId</a></td><td>string</td><td>Yes</td></tr>
             </tbody>
             </table>
@@ -895,7 +895,7 @@
 	   <tr><td><a href="#dfn-path">path</a></td><td>string</td><td>Yes</td></tr>
 	   <tr><td><a href="#dfn-filter">filter</a></td><td>string</td><td>Yes</td></tr>
 	   <tr><td><a href="#dfn-authorization">authorization</a></td><td>string</td><td>Optional</td></tr>
-           <tr><td><a href="#dfn-data-compression">data compression</a></td><td>string</td><td>Optional</td></tr>
+           <tr><td><a href="#dfn-data-compression">dc</a></td><td>string</td><td>Optional</td></tr>
 	   <tr><td><a href="#dfn-requestid">requestId</a></td><td>string</td><td>Yes</td></tr>
 	 </tbody>
 	 </table>
@@ -1702,9 +1702,9 @@
       <td>A query string defining a filter to optimize subscriptions. Refer to the <a data-link-type="dfn" href="https://raw.githack.com/COVESA/vehicle-information-service-specification/v3.1/spec/VISSv3.1_Core.html#filter-request">section 7. Filter Request</a> of the [[CORE]] specification.</td>
     </tr>
     <tr>
-      <td><dfn data-dfn-type="dfn" id="dfn-data-compression">data compression</dfn> </td>
+      <td><dfn data-dfn-type="dfn" id="dfn-data-compression">dc</dfn> </td>
       <td> string </td>
-      <td>Compression of path and/or timestamp data.</td>
+      <td>A data compression string identifying the scheme applied to path and/or timestamp data.</td>
     </tr>
     <tr>
       <td> <b>metadata</b> </td>
