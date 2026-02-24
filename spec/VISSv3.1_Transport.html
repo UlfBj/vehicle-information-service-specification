@@ -501,12 +501,12 @@
             However, the server MAY reject to open a subsequent WebSocket connection and
             the client is responsible for handling this gracefully.
             </p>
-            <p>If multiple WebSocket connection is established between a client application and the server 
+            <p>If multiple WebSocket connections are established between a client application and the server 
               then each connection MUST be managed independently. For example, subscriptions created 
               through one connection can only trigger events through that same connection, 
               and the client MUST use the same connection to unsubscribe.
             </p>
-            <p>If multiple WebSocket connection has been established
+            <p>If multiple WebSocket connections have been established
             between one or more clients and a particular server instance, there
             is a risk that race conditions and concurrency issues could occur.
             For instance, simultaneous updates to the same signal from different connections 
@@ -536,7 +536,7 @@
             <p>
               The VISSv3 server MAY also terminate the connection if it does not receive any requests from the client 
               within a server-defined timeout period. 
-              In such cases, the client MUST handle the closure gracefully, and if needed, re-establish the connection and request new subscriptions, where required.
+              In such cases, the client MUST handle the closure gracefully, and if needed, re-establish the connection and request new subscriptions.
             </p>
         </section>
       </section>
@@ -1174,7 +1174,7 @@
             If an error occurs, an
             <a href="#dfn-unsubscribeerrorresponse" class="internalDFN" data-link-type="dfn">unsubscribeErrorResponse</a> message SHALL be returned.
             <br>
-            If the client has created multiple WebSocket instance, it <em class="rfc2119" title="MUST">MUST</em> unsubscribe
+            If the client has created multiple WebSocket instances, it <em class="rfc2119" title="MUST">MUST</em> unsubscribe
             using the same WebSocket instance that was originally used to create the subscription.
             </p>
 	<table class="simple">
@@ -1232,7 +1232,7 @@
               <pre><code>
               {
                 "action": "unsubscribe",
-                "requestId": "6578",
+                "requestId": "5786",
                 "error": {"number": "400", "reason": "invalid_data", "description": "Data present in the request is invalid."},
                 "ts": "2020-04-15T13:37:00Z"
               }
@@ -1554,7 +1554,7 @@
           where VID represents a unique identifier that links the vehicle to the access control ecosystem.
           This vehicle identifier is not necessarily the manufacturer's Vehicle Identification Number (VIN).<br>
           The cloud-side client is expected to have access to this vehicle identifier.
-          How it obtains it is out of scope for this specification.
+          How the cloud-side client obtains this identifier is out of scope for this specification.
           When the cloud client intends to send a request to the vehicle server, 
           it first generates a unique topic name and subscribes to it via the broker. 
           The client then generates a JSON formatted payload with the following structure:
