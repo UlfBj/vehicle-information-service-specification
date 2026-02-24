@@ -4595,5 +4595,46 @@
          </section>
       </section>
    </section>
+
+   <section id="out-of-order-request" class="appendix">
+      <h2>Out-of-order Request</h2>
+      The timestamp in the Update request was introduced to prevent out-of-order updates,
+      i. e. that a request that was issued by the client at an earlier point in time than the latest request that the server has successfully received.
+      To support server implementations it is explained in more detail in the following.
+
+      The figure below shows a timeline with a sliding window with a front border following the server real time
+      and a rear border following along keeping the window size constant.
+      The front border is recommended to be as close as possible to the server real time,
+      but how close it should be is an implementation decision. It may be either leading or trailing real time.
+      The window size is also an implementation decision but in this example it is set to two seconds.
+
+      <figure id="max-sliding-window">
+         <img
+            src="images/sliding-window1.jpg"
+            alt="Maximum sliding window."
+         />
+         <figcaption>
+            <span class="fig-title">Maximum sliding window.</span>
+         </figcaption>
+      </figure>
+
+      Assuming that the server receives a successful Update request with a timestamp T1 set to one second earlier than the current real-time,
+      the window size then becomes reduced to one second (the time between T and T1) as shown in the figure below.
+
+      <figure id="reduced-sliding-window">
+         <img
+            src="images/sliding-window2.jpg"
+            alt="Reduced sliding window."
+         />
+         <figcaption>
+            <span class="fig-title">Reduced sliding window.</span>
+         </figcaption>
+      </figure>
+
+      If a new request is received it must then have a timestamp within the reduced sliding window or else it is rejected.
+      However, the front of the sliding window is continuously moving forward while T1 is a fixed time,
+      so one second later the previously successfully received request is no longer within the sliding window which has a fixed maximum size of two seconds.
+      This means that the scenario is back at the state shown in the first figure
+   </section>
 </body>
 
