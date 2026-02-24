@@ -146,7 +146,7 @@
     <section id="introduction">
       <h2>Introduction</h2>
       <p>This specification provides examples of how the message payloads defined in [[CORE]] are used together with different transport protocols.
-      The Websocket protocol([[RFC6455]]) is used to give an example of how the JSON primary payload format is directly used.
+      The WebSocket protocol([[RFC6455]]) is used to give an example of how the JSON primary payload format is directly used.
       This is followed by examples of other transport protocols that introduce exceptions or transformations to the primary payload format.<br>
       The Vehicle Information Service Specification, version 3.1, allows the use of any transport protocol that can carry the unaltered primary payload format.
       If a transport protocol requires modifications or transformations, those MUST be specified either in this document or in the [[PAYLOAD ENCODING]] document.
@@ -169,7 +169,7 @@
 	    <td><a href="https://grpc.io/">[gRPC]</a></td>
 	  </tr>
 	</tbody></table>
-    The Websocket protocol is included to provide an example for protocols that does not introduce any deviations, and therefore it is not listed above.
+    The WebSocket protocol is included to provide an example for protocols that do not introduce any deviations, and therefore it is not listed above.
       </p>
     </section>
 
@@ -178,7 +178,7 @@
     <section id="terminology">
       <h2>Terminology</h2>
       <p>
-      The acronym 'VISSv3.1' refer to this document, the VISS version 3.1 specification.
+      The acronym 'VISSv3.1' refers to this document, the VISS version 3.1 specification.
       The acronym 'HIM' is used to refer to the <a href="https://github.com/COVESA/hierarchical_information_model">'Hierarchical Information Model'</a>
       which is hosted by COVESA.
       The acronym 'VSS' refer to the <a href="https://github.com/COVESA/vehicle_signal_specification">'Vehicle Signal Specification'</a>
@@ -343,7 +343,7 @@
 	  <tr>
 	    <td>Unknown subscription Id</td>
 	    <td>404 - unavailable_data - Unknown subscription Id</td>
-	    <td>Filter type not allowed with request method</td>
+	    <td>Subscription Id not found in active subscriptions</td>
 	  </tr>
 	  <tr>
 	    <td>Unsupported feature Id</td>
@@ -497,7 +497,7 @@
             is not supported, hence the server MUST reject ‘ws’ connection requests.</p>
       
             <p>This specification assumes that a single WebSocket is used to enable communication between a client application
-            and the server. The client MAY open more than one websocket.
+            and the server. The client MAY open more than one WebSocket.
             However, the server MAY reject to open a subsequent WebSocket connection and
             the client is responsible for handling this gracefully.
             </p>
