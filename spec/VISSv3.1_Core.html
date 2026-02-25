@@ -203,7 +203,7 @@
          This specification describes the messaging API for the VISS protocol.
          This includes the messaging layer and set of rules for structuring
          data.<br>
-         The specification is agnostic to which transport protocol that is used
+         The specification is agnostic to which transport protocol is used
          as long as it conforms to this messaging API and data rule set.
          Transport protocols that cannot conform to the entire CORE
          specification can still be conformant by describing their deviations in
@@ -347,6 +347,11 @@
                External Consent Framework. An agent that is responsible for
                inquiring a data owner about consent for client access to data.
             </dd>
+            <dt><dfn data-dfn-type="dfn" id="dfn-dc">dc</dfn></dt>
+            <dd>
+               A string identifying the compression scheme applied to path 
+               and/or timestamp data in server responses.
+            </dd>
          </dl>
       </section>
    </section>
@@ -366,7 +371,7 @@
       rule set and definition of the content of the tree but in VISSv3.1 the
       <a href="https://github.com/COVESA/hierarchical_information_model">HIM</a>
       data profile rule set is instead used. This enables other trees than the
-      VSS tree also to be used. A server may manage a set of trees, a so called
+      VSS tree also to be used. A server may manage a set of trees, a so-called
       forest, that a client can access.<br>
       Typically at least three trees are used in a VISS-based server
       implementation:<br>
@@ -392,7 +397,7 @@
       The server capabilities tree shall only be represented by one tree, while
       both the vehicle tree and the datatype definition tree can be represented
       by multiple trees. An example could be a scenario with a truck pulling one
-      or more trailers, where the truck vehicle signals are repesented in one
+      or more trailers, where the truck vehicle signals are represented in one
       tree, and the signals of each trailer is represented in a separate tree.
       Each of these trees may use a separate datatype definition tree.<br>
       The different trees must have unique root node names as specified in
@@ -515,9 +520,9 @@
          with the key names "value" and "ts".<br>
          The "ts" value MUST be a string as specified in
          <a href="#timestamp"></a>.<br>
-         The "value" value MUST be represented as a string for simple datatypes.
+         The "value" MUST be represented as a string for simple datatypes.
          If the value is an array it MUST be represented as a JSON array of
-         strings. In the case the value is a struct complex datatype it MUST be
+         strings. In the case where the value is a struct complex datatype it MUST be
          represented as a JSON object, see below. For supported datatypes see
          <a
             href="https://covesa.github.io/hierarchical_information_model/common_rule_set/data_entry/datatypes/"
@@ -582,7 +587,7 @@
                </li>
                <li><a>authorization</a> The authorization token.</li>
                <li>
-                  data compression The compression scheme(s) used for
+                  <a>dc</a> The compression scheme(s) used for
                   transmitted data.
                </li>
             </ul>
@@ -692,7 +697,7 @@
                </li>
                <li><a>authorization</a> The authorization token.</li>
                <li>
-                  data compression The compression scheme(s) used for
+                  <a>dc</a> The compression scheme(s) used for
                   transmitted data.
                </li>
             </ul>
@@ -1311,7 +1316,7 @@
          <section id="forest-inquiry">
             <h2>Forest Inquiry</h2>
             <p>
-               A metadata request can also be used by the client to retrive
+               A metadata request can also be used by the client to retrieve
                information about the set of trees that the server manages, a so
                called "forest inquiry". This request must have a path starting
                with the root node name "HIM" which may be appended with one dot
@@ -1368,7 +1373,7 @@
                <li>Request for a single value from multiple nodes.</li>
                <li>Request for multiple values from multiple nodes.</li>
             </ul>
-            The syntax to accomodate these four cases have a common structure
+            The syntax to accommodate these four cases have a common structure
             where a data point ("dp") consists of one or more objects containing
             a "value" and a timestamp ("ts"), and the complete aggregation
             ("data"), consists of one or more objects containing a "path" and a
@@ -2372,7 +2377,7 @@
             </section>
 
             <section id="client-signed-agtoken">
-               <h2>Long Term Access Grant Token</h2>
+               <h2>Long-Term Access Grant Token</h2>
                Except for the vehicle identity (vin) claim, which is optional,
                the long term access grant token SHALL include the following
                claims in both the header and the payload.<br>
@@ -2554,7 +2559,7 @@
                If PoP freshness is a critical requirement, the nonce could be
                derived from a public source of randomness, such as the
                <a href="https://www.cloudflare.com/leagueofentropy/"
-                  >Leage of Entropy</a
+                  >League of Entropy</a
                >
                or
                <a
@@ -2610,7 +2615,7 @@
          decide on which authentication method to use per sub-actor can be quite
          complex. However, this complexity can be reduced if the
          <a href="#client-def">client</a> explicitly requests specific roles for
-         each sub-actor. Following the principle of least priviledge, a
+         each sub-actor. Following the principle of least privilege, a
          <a href="#client-def">client</a> should not have access to more vehicle
          signals than necessary. This is achieved by the
          <a href="#purpose-list-def">purpose list</a>, that assigns only the for
@@ -4389,7 +4394,7 @@
                <li>HTTP port number: 445</li>
                <li>WebSocket port number: 6445</li>
             </ul>
-            The recommended mechanism for MQTT is to assing a separate topic
+            The recommended mechanism for MQTT is to assign a separate topic
             name to the data channel. The recommended topic name is created by
             appending "/datachannel" to the topic name of the control channel.
          </section>
