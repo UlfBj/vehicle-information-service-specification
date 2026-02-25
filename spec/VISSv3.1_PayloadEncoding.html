@@ -183,7 +183,7 @@
             As vehicles become more connected and data-driven, the need for efficient data exchange methods becomes paramount. 
             Protobuf encoding serves as an optimal solution within VISS due to its compact binary format and schema evolution capabilities.
           </p>
-          <p>In this section, we outline the integration of Protobuf encoding with VISS version 3.1, providing comprehensive details on schema definitions, 
+          <p>In this section, this section outline the integration of Protobuf encoding with VISS version 3.1, providing comprehensive details on schema definitions, 
             encoding and decoding processes, and practical examples. This will enable seamless implementation and interoperability across different systems and 
             platforms within the automotive ecosystem.
           </p>
@@ -301,8 +301,8 @@
                       string Path = 1;
                       optional FilterExpressions Filter = 2;
                       optional string Authorization = 3;
-                      optional string DataCompression = 4;
-                      optional string RequestId = 5;
+                      optional string DC = 4;
+                      string RequestId = 5;
               }
               
               message GetResponseMessage {
@@ -313,7 +313,7 @@
                       }
                       optional SuccessResponseMessage SuccessResponse = 2;
                       optional ErrorResponseMessage ErrorResponse = 3;
-                      optional string RequestId = 4;
+                      string RequestId = 4;
                       string Ts = 5;
                       optional string Authorization = 6;
               }
@@ -322,14 +322,14 @@
                       string Path = 1;
                       string Value = 2;
                       optional string Authorization = 3;
-                      optional string RequestId = 4;
+                      string RequestId = 4;
                       optional string Ts = 5;
               }
               
               message SetResponseMessage {
                       ResponseStatus Status = 1;
                       optional ErrorResponseMessage ErrorResponse = 2;
-                      optional string RequestId = 3;
+                      string RequestId = 3;
                       string Ts = 4;
                       optional string Authorization = 5;
               }
@@ -338,7 +338,7 @@
                       string Path = 1;
                       optional FilterExpressions Filter = 2;
                       optional string Authorization = 3;
-                      optional string DataCompression = 4;
+                      optional string DC = 4;
                       string RequestId = 5;
               }
               
@@ -369,13 +369,13 @@
               
               message UnsubscribeRequestMessage {
                       string SubscriptionId = 1;
-                      optional string RequestId = 2;
+                      string RequestId = 2;
               }
               
               message UnsubscribeResponseMessage {
                       ResponseStatus Status = 1;
                       optional ErrorResponseMessage ErrorResponse = 2;
-                      optional string RequestId = 3;
+                      string RequestId = 3;
                       string Ts = 4;
               }
             </pre>
