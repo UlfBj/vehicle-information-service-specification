@@ -41,7 +41,7 @@
             href: "https://raw.githack.com/COVESA/vehicle-information-service-specification/v3.1/spec/VISSv3.1_Transport.html",
             publisher: "Ulf Bjorkengren; Wonsuk Lee"
           },
-          "PAYLOAD ENCODING": {
+          "PAYLOAD_ENCODING": {
              title: "COVESA VISS version 3.1-Payload Encoding",
              href: "https://raw.githack.com/COVESA/vehicle-information-service-specification/v3.1/spec/VISSv3.1_PayloadEncoding.html",
              publisher: "Ulf Bjorkengren; Wonsuk Lee",
@@ -114,16 +114,16 @@
       <p>
         The Vehicle Information Service Specification (VISS) is a
         service for accessing vehicle information, including signals from sensors
-        on control units within a vehicle's network. This information is exposed through a hierarchical, 
-        tree-like taxonomy as defined in the COVESA <a href="https://github.com/COVESA/hierarchical_information_model">Hierarchical Information Model</a> (HIM), 
-        and is provided in JSON format. The VISS service may be hosted within the vehicle or on external servers, 
+        on control units within a vehicle's network. This information is exposed through a hierarchical,
+        tree-like taxonomy as defined in the COVESA <a href="https://github.com/COVESA/hierarchical_information_model">Hierarchical Information Model</a> (HIM),
+        and is provided in JSON format. The VISS service may be hosted within the vehicle or on external servers,
         using data that has already been off-boarded.
       </p>
       <p>
-        VISS enables a broad range of use cases, including predictive maintenance, usage-based insurance, fleet management, 
+        VISS enables a broad range of use cases, including predictive maintenance, usage-based insurance, fleet management,
         and real-time driver assistance services.
-        In the context of artificial intelligence, VISS serves as a critical data access layer, providing high-quality, 
-        real-time vehicle data that can be utilized by AI algorithms for tasks such as anomaly detection, 
+        In the context of artificial intelligence, VISS serves as a critical data access layer, providing high-quality,
+        real-time vehicle data that can be utilized by AI algorithms for tasks such as anomaly detection,
         driver behavior analysis, energy optimization, and contextual decision-making.
       </p>
       <p>
@@ -140,12 +140,15 @@
         Instead of referencing to the VSS rule set for how to define the content of a tree it refers to the HIM data profile rule set.
         This enables also other trees than the VSS tree to be used, a server may manage a set of trees, a forest, that a client can access.
         Other changes are minor adaptations to support the concept of having a forest of trees, such as adding support for a client to do a forest inquiry.
-      </p>     
+      </p>
       <p>
-        There are three parts to this specification, [[CORE]], [[TRANSPORT]], and PAYLOAD ENCODING. This document, the VISS version 3.1 PAYLOAD ENCODING specification, 
-        describes the VISSv3.1 payload encodings that is used in some cases. 
-        The companion specifications [[CORE]] describes the messaging layer,
-        and [[TRANSPORT]] describes the deviations form the CORE specification that are used by some transport protocols.
+        There are three parts to this specification, [[CORE]], [[TRANSPORT]], and [[PAYLOAD_ENCODING]].
+        The [[CORE]] document describes the messaging layer,
+        the [[TRANSPORT]] document describes the deviations form the CORE specification that are used by some transport protocols,
+        and the [[PAYLOAD_ENCODING]] document describes payload encodings that are supported.
+
+        This document, the VISS Implementation Guideline version 1.0
+        provides recommendations on how to implement certain features to ensure implementation interoperability.
       </p>
     </section>
 
@@ -181,7 +184,6 @@
         xxx.
         </p>
       </section>
-
 
   </body>
 </html>
