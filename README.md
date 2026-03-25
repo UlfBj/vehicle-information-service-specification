@@ -36,7 +36,7 @@ To see the most recent HTML rendered version of the specifications from this rep
 - [COVESA VISS version 3.1 - Core](https://raw.githack.com/COVESA/vehicle-information-service-specification/v3.1/spec/VISSv3.1_Core.html)
 - [COVESA VISS version 3.1-Transport](https://raw.githack.com/COVESA/vehicle-information-service-specification/v3.1/spec/VISSv3.1_Transport.html)
 - [COVESA VISS version 3.1-Payload Encoding](https://raw.githack.com/COVESA/vehicle-information-service-specification/v3.1/spec/VISSv3.1_PayloadEncoding.html)
-- [COVESA VISS-Implementation Guidelines version 1.0](https://raw.githack.com/COVESA/vehicle-information-service-specification/v3.1/spec/VISS_ImplementationGuidelines.v1.0.html)
+- [COVESA VISS-Implementation Guidelines](https://raw.githack.com/COVESA/vehicle-information-service-specification/v3.1/spec/supplement/VISS_ImplementationGuidelines.html)
 
 The [VISS explainer](./VISS-explainer.md) gives some background and rationale to this interface.
 
