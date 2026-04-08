@@ -8,10 +8,6 @@
 
 Ulf Björkengren - Ford Motor Company
 
-Ted Guild - Geotab Inc.
-
-Peter Winzell - Volvo Cars
-
 Wonsuk Lee - 한국전자통신연구원(ETRI)
  
 ### Lead editors
@@ -25,20 +21,31 @@ Minutes of meetings is found [here](https://covesa.atlassian.net/wiki/spaces/WIK
 
 ## Overview
 
->Vehicle Information Service Specification (VISS) is an API for accessing the COVESA Vehicle Signal Specification (VSS) data. The work started at [The World Wide Web Consortium (W3C)](https://www.w3.org) in collaboration with GENIVI and its successor COVESA. The W3C Automotive Working Group closed in February of 2024 and the work is continuing at COVESA.
+Vehicle Information Service Specification (VISS) is an API for accessing the COVESA Vehicle Signal Specification (VSS) data. The work started at [The World Wide Web Consortium (W3C)](https://www.w3.org) in collaboration with GENIVI and its successor COVESA. The W3C Automotive Working Group closed in February of 2024 and the work is continuing at COVESA.
+
+The VISS specification consists of the following documents:
+* Core
+* Transport
+* Payload Encoding
+
+The specification is supplemented with the following documents:
+* Implementation Guidelines
 
 To see the most recent HTML rendered version of the specifications from this repository can be found at the following:
 
-- [COVESA VISS version 3.0 - Core](https://raw.githack.com/COVESA/vehicle-information-service-specification/main/spec/VISSv3.0_Core.html)
-- [COVESA VISS version 3.0-Payload Encoding](https://raw.githack.com/COVESA/vehicle-information-service-specification/main/spec/VISSv3.0_PayloadEncoding.html)
-- [COVESA VISS version 3.0-Transport](https://raw.githack.com/COVESA/vehicle-information-service-specification/main/spec/VISSv3.0_Transport.html)
+- [COVESA VISS version 3.1 - Core](https://raw.githack.com/COVESA/vehicle-information-service-specification/v3.1/spec/VISSv3.1_Core.html)
+- [COVESA VISS version 3.1-Transport](https://raw.githack.com/COVESA/vehicle-information-service-specification/v3.1/spec/VISSv3.1_Transport.html)
+- [COVESA VISS version 3.1-Payload Encoding](https://raw.githack.com/COVESA/vehicle-information-service-specification/v3.1/spec/VISSv3.1_PayloadEncoding.html)
+- [COVESA VISS-Implementation Guidelines](https://raw.githack.com/COVESA/vehicle-information-service-specification/v3.1/spec/supplement/VISS_ImplementationGuidelines.html)
 
 The [VISS explainer](./VISS-explainer.md) gives some background and rationale to this interface.
 
 ## Latest version
-[VISS version 3.0](https://github.com/COVESA/vehicle-information-service-specification/releases/tag/v3.0)
+[VISS version 3.1](https://github.com/COVESA/vehicle-information-service-specification/releases/tag/v3.1rc1)
 
 ## Previous versions
+[VISS version 3.0](https://github.com/COVESA/vehicle-information-service-specification/releases/tag/v3.0)
+
 [VISS version 2.0](https://github.com/COVESA/vehicle-information-service-specification/releases/tag/v2.0)
 
 [VISS version 1](https://www.w3.org/TR/vehicle-information-service/)
