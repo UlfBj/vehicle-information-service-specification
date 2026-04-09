@@ -184,7 +184,7 @@
          This specification, the version 3.1, is a backwards compatible
          extension of the third version of VISS. Instead of referencing to the
          VSS rule set for how to define the content of a tree it refers to the
-         HIM data profile rule set. This enables also other trees than the VSS
+         rule sets of the HIM vehicle data profile.This enables also other trees than the VSS
          tree to be used, a server may manage a set of trees, a forest, that a
          client can access. Other changes are support for the Unix domain socket protocol,
          and minor adaptations to support the concept of having a forest of trees,
@@ -249,8 +249,8 @@
       </p>
       <p>
          The VISSv3.1 data structuring rules (<a
-            href="https://covesa.github.io/hierarchical_information_model/data_rule_set/"
-            >HIM data profile rule set</a
+            href="https://covesa.github.io/hierarchical_information_model/vehicle_data_rule_set/"
+            >HIM vehicle data profile rule set</a
          >) are the same through all transport protocols. The basis for
          structuring data held by a server is a tree structure.
       </p>
@@ -264,7 +264,7 @@
          The acronym 'VISSv3.1' is used to refer to this document, the VISS
          version 3.1 specification. The acronym 'HIM' is used to refer to the
          <a href="https://github.com/COVESA/hierarchical_information_model"
-            >'Hierarchical Information Model'</a
+            >'Hierarchical Information Model version 1.0 Vehicle Data profile'</a
          >
          which is hosted by COVESA. The acronym 'VSS' is used to refer to the
          <a href="https://github.com/COVESA/vehicle_signal_specification"
@@ -376,9 +376,9 @@
       <br>
       Previous VISS versions have been using the
       <a href="https://github.com/COVESA/vehicle_signal_specification">VSS</a>
-      rule set and definition of the content of the tree but in VISSv3.1 the
+      rule set and definition of the content of the tree but in VISSv3.1 the rule sets of the
       <a href="https://github.com/COVESA/hierarchical_information_model">HIM</a>
-      data profile rule set is instead used. This enables other trees than the
+      vehicle data profile are instead used. This enables other trees than the
       VSS tree also to be used. A server may manage a set of trees, a so-called
       forest, that a client can access.<br>
       Typically at least three trees are used in a VISS-based server
