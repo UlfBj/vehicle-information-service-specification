@@ -304,6 +304,9 @@
                   where "path-snippetX" are the path snippets that were declared by the <a href="#filter-variant-resource">filter expression</a> in the request,
                   and "output-params" and "ddtt" represent the same semantics as in the single resource case.<br>
                   The "path-snippetX" expressions must not contain wildcards.
+                  If the filter expression in the request used a wildcard, the server shall expand it to one array entry per matching
+                  concrete resource, and the "path-snippetX" key of each entry shall be the resolved, concrete (non-wildcard) path snippet
+                  of the corresponding resource.
                 </section>
               </section>
 
@@ -336,7 +339,9 @@
             <li>All response, event and error messages shall include a <a href="#service-status">Status</a> parameter.</li>
             <li>The requests defined in the service interface shall only be issued using paths addressing nodes of node type 'procedure',
             except for service discovery requests that may use a path addressing nodes of type 'branch'.</li>
-            <li>The available filter variants are: timebased / status / all / none.</li>
+            <li>The available filter variants are: timebased / status / all / none / resource.</li>
+            <li>The filter argument is either a single filter object, or an array of filter objects,
+            see <a href="#service-filter">Service Filter</a>.</li>
             <li>If an invoke or monitor request leads to that an event session is started then it is automatically terminated when the
             service is successfully terminated, or terminated due to being cancelled or ending in failure.
             The server must then issue an event or error message with the <a href="#service-status">Status</a> set appropriately.</li>
@@ -462,6 +467,9 @@
             Purpose: Cancels either an ongoing service or a monitoring session.<br>
             Cancels an ongoing service if the service Id was obtained in the response of an Invoke request.
             If it was obtained in the response of a Monitor request then that monitoring session is cancelled but the service execution is unaffected.<br>
+            Cancel does not support a filter argument. If the invocation identified by serviceId addresses a service that manages
+            multiple resources, then a Cancel request cancels the execution for all resources addressed by that invocation;
+            individual resources cannot be canceled selectively.<br>
             Request arguments, of which serviceId is mandatory:
             <ul>
               <li>serviceId: The Id of an ongoing session.</li>
@@ -585,7 +593,7 @@
               The "parameter" value shall be an array containing one or more path snippet(s) that is to be inserted in the full path
               that points to the respective service Input and Output nodes of the addressed resources.
               A path segment name in a snippet may be replaced by the wildcard operator "*".<br>
-              If a rsource variant filter is not included in a request addressing a service that is manages multiple resources
+              If a resource variant filter is not included in a request addressing a service that manages multiple resources
               then the response and any event messages will contain output data from all the resources.
               </p>
             </section>
@@ -593,9 +601,13 @@
             <section id="multiple-filters">
               <h2>Multiple Filters</h2>
               <p>
-              The Resource variant filter can be combined with any one of the other filter variants.
-              These other filter variants are only allowed to be combined with the Resource filter variant.
-              An array expression shall be used to create a combined filter expression as shown in the example below.
+              A single filter variant expressed as an object, as shown in the preceding sections, remains valid on its own and is unaffected
+              by this section.<br>
+              When it is desired to combine the Resource variant filter with another filter variant, an array expression shall be used
+              to create a combined filter expression as shown in the example below.
+              The array must contain exactly two filter objects: one of the Resource variant, and one of any other variant
+              (timebased / status / all / none). Filter variants other than Resource must not be combined with each other.
+              The order of the filter objects within the array has no significance.
               <pre><code>
               "filter": [{"variant": "status"}, {"variant": "resource", "parameter": ["Row1.DriverSide", "Row2.PassengerSide"]}]
               </code></pre>
@@ -638,7 +650,7 @@
            <tr><th rowspan="6">invokeRequest</th><td>action</td><td>Action</td><td>Yes</td></tr>
            <tr><td>path</td><td>string</td><td>Yes</td></tr>
            <tr><td>input</td><td>object</td><td>Yes (*)</td></tr>
-           <tr><td>filter</td><td>object</td><td>Yes</td></tr>
+           <tr><td>filter</td><td>object or array</td><td>Yes</td></tr>
            <tr><td>authorization</td><td>string</td><td>Optional</td></tr>
            <tr><td>requestId</td><td>string</td><td>Yes</td></tr>
            </tbody>
@@ -729,7 +741,7 @@
            <tbody>
            <tr><th rowspan="5">monitorRequest</th><td>action</td><td>Action</td><td>Yes</td></tr>
            <tr><td>path</td><td>string</td><td>Yes</td></tr>
-           <tr><td>filter</td><td>object</td><td>Yes</td></tr>
+           <tr><td>filter</td><td>object or array</td><td>Yes</td></tr>
            <tr><td>authorization</td><td>string</td><td>Optional</td></tr>
            <tr><td>requestId</td><td>string</td><td>Yes</td></tr>
            </tbody>
@@ -773,7 +785,7 @@
               {
                 "action": "monitor",
                 "path": "VehicleService.Seating.ActivateMassage",
-                "filter": [{"variant": "resource", "parameter": ["Row1.DriverSide"]"}, {"variant": "status"}],
+                "filter": [{"variant": "resource", "parameter": ["Row1.DriverSide"]}, {"variant": "status"}],
                 "requestId": "8756"
               }
               </code></pre>
@@ -864,7 +876,7 @@
            <tbody>
            <tr><th rowspan="5">discoveryRequest</th><td>action</td><td>Action</td><td>Yes</td></tr>
            <tr><td>path</td><td>string</td><td>Yes</td></tr>
-           <tr><td>filter</td><td>object</td><td>Optional</td></tr>
+           <tr><td>filter</td><td>object</td><td>Optional (**)</td></tr>
            <tr><td>authorization</td><td>string</td><td>Optional</td></tr>
            <tr><td>requestId</td><td>string</td><td>Yes</td></tr>
            </tbody>
@@ -881,6 +893,9 @@
             <tr><td>ts</td><td>string</td><td>Yes</td></tr>
             </tbody>
             </table>
+            (**) : A resource variant filter must only be used if the path addresses a procedure node that manages multiple resources,
+            see <a href="#filter-variant-resource">Filter Variant Resource</a>. If present, the metadata in the response is narrowed to
+            the resource(s) selected by the filter.<br>
               <b>Example:</b><br>
               Request:
               <pre><code>
@@ -896,6 +911,24 @@
                 "action": "discover",
                 "metadata": {"Seating":{"MoveSeat":{...}, "ActivateMassage":{...}, ... }},
                 "requestId": "5687",
+                "ts":"2025-04-15T13:37:05Z"
+              }
+              </code></pre>
+              Request with a resource filter narrowing the metadata to a single resource of a multiplexed service:
+              <pre><code>
+              {
+                "action": "discover",
+                "path": "VehicleService.Seating.MoveSeat",
+                "filter": {"variant": "resource", "parameter": ["Row1.DriverSide"]},
+                "requestId": "5688"
+              }
+              </code></pre>
+              Successful response:
+              <pre><code>
+              {
+                "action": "discover",
+                "metadata": {"MoveSeat":{"Row1":{"DriverSide":{...}}}},
+                "requestId": "5688",
                 "ts":"2025-04-15T13:37:05Z"
               }
               </code></pre>
@@ -1255,6 +1288,10 @@
                             "description": "The service path",
                             "type": "string"
                         },
+                        "filter": {
+                            "description": "A resource variant filter narrowing the addressed resource(s)",
+                            "$ref": "https://covesa.global/vissv3.2.service/discover-filter.schema.json"
+                        },
                         "authorization": {
                             "description": "The access token",
                             "type": "string"
@@ -1370,7 +1407,33 @@
             "$schema": "https://json-schema.org/draft/2020-12/schema",
             "$id": "https://covesa.global/vissv3.2.service/filter.schema.json",
             "title": "vissv3.2.service-filter",
-            "description": "VISS version 3.2.service filter",
+            "description": "VISS version 3.2.service filter, either a single filter object, or an array of exactly two filter objects of which one must be the resource variant",
+            "oneOf": [
+                {
+                    "$ref": "https://covesa.global/vissv3.2.service/single-filter.schema.json"
+                },
+                {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": {
+                        "$ref": "https://covesa.global/vissv3.2.service/single-filter.schema.json"
+                    },
+                    "contains": {
+                        "properties": {
+                            "variant": {
+                                "const": "resource"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "https://covesa.global/vissv3.2.service/single-filter.schema.json": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "https://covesa.global/vissv3.2.service/single-filter.schema.json",
+            "title": "vissv3.2.service-single-filter",
+            "description": "VISS version 3.2.service filter, a single filter object of any supported variant",
             "type": "object",
             "properties": {
                 "variant": {
@@ -1421,7 +1484,47 @@
                             "const": "none"
                         }
                     }
+                },
+                {
+                    "properties": {
+                        "variant": {
+                            "const": "resource"
+                        },
+                        "parameter": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": [
+                        "parameter"
+                    ]
                 }
+            ]
+        },
+        "https://covesa.global/vissv3.2.service/discover-filter.schema.json": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "https://covesa.global/vissv3.2.service/discover-filter.schema.json",
+            "title": "vissv3.2.service-discover-filter",
+            "description": "VISS version 3.2.service discover filter, restricted to the resource variant",
+            "type": "object",
+            "properties": {
+                "variant": {
+                    "const": "resource"
+                },
+                "parameter": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "variant",
+                "parameter"
             ]
         },
         "https://covesa.global/vissv3.2.service/indata.schema.json": {
@@ -1456,7 +1559,25 @@
             "$id": "https://covesa.global/vissv3.2.service/outdata.schema.json",
             "$schema": "https://json-schema.org/draft/2020-12/schema",
             "title": "VISSv3.2.service-outdata-representation",
-            "description": "VISSv3.2.service outdata representation",
+            "description": "VISSv3.2.service outdata representation, either a single-resource object, or an array of per-resource objects for services that manage multiple resources",
+            "oneOf": [
+                {
+                    "$ref": "https://covesa.global/vissv3.2.service/outdata-single.schema.json"
+                },
+                {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "https://covesa.global/vissv3.2.service/outdata-resource.schema.json"
+                    }
+                }
+            ]
+        },
+        "https://covesa.global/vissv3.2.service/outdata-single.schema.json": {
+            "$id": "https://covesa.global/vissv3.2.service/outdata-single.schema.json",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "title": "VISSv3.2.service-outdata-single-representation",
+            "description": "VISSv3.2.service outdata representation for a service that manages a single resource",
             "type": "object",
             "properties": {
                 "output": {
@@ -1465,6 +1586,21 @@
                 "ts": {
                     "description": "The time stamp",
                     "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "https://covesa.global/vissv3.2.service/outdata-resource.schema.json": {
+            "$id": "https://covesa.global/vissv3.2.service/outdata-resource.schema.json",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "title": "VISSv3.2.service-outdata-resource-representation",
+            "description": "VISSv3.2.service outdata array entry, keyed by the resolved (non-wildcard) resource path snippet",
+            "type": "object",
+            "minProperties": 1,
+            "maxProperties": 1,
+            "patternProperties": {
+                ".*": {
+                    "$ref": "https://covesa.global/vissv3.2.service/outdata-single.schema.json"
                 }
             },
             "additionalProperties": false
