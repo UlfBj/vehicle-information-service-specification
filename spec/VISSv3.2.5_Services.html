@@ -312,13 +312,12 @@
 
             </section>
 
-            <section id="model-exceptions">
-              <h2>Exceptions</h2>
+            <section id="model-limitations">
+              <h2>Limitations</h2>
               <ul>
-                <li>For HTTP the POST method is used for all request actions except for Service discovery that uses the GET method.</li>
-                <li>The Invoke and Monitor requests will if sent over HTTP only return the response message.
-                If the Status in the response is set to ONGOING then the client is recommended to issue a Monitor request to the same service
-                over a transport protocol that supports event messages, e. g. WebSocket or MQTT.</li>
+                <li>When using HTTP as the transport protocol the only supported method is "discover".
+                The POST HTTP method must be used with the "depth" parameter in the message body,
+                see the <a href="#service-discovery-example">Service Discovery Example</a>.</li>
               </ul>
             </section>
 
@@ -913,12 +912,44 @@
                 "ts":"2025-04-15T13:37:05Z"
               }
               </code></pre>
+          <p>
+            <b>HTTP example:</b>
+            <pre><code>
+            POST /VehicleService/Seating   HTTP/1.1
+            Host: 127.0.0.1:1337
+            Accept: application/json
+      ...
+            {
+              "depth": "0"
+            }
+            </code></pre>
+            Successful response:
+            <pre><code>
+            HTTP/1.1 200 OK
+            Content-Type: application/json; charset=utf-8
+      ...
+            {
+              "metadata": {"Seating":{"MoveSeat":{...}, "ActivateMassage":{...}, ... }},
+              "ts": "2020-04-15T13:37:00Z"
+            }
+            </code></pre>
+            Error response:
+            <pre><code>
+            HTTP/1.1 400 Bad Request
+            Content-Type: application/json; charset=utf-8
+      ...
+            {
+              "error": {"number": "400", "reason": "bad_request", "description": "Unsupported action."},
+              "ts": "2020-04-15T13:37:00Z"
+            }
+            </code></pre>
+          </p>
         </section>
 
         <section id="error-message-example">
           <h2>Error Message Example</h2>
           <p>
-          The error message has the same principal format for all the different requests.
+          The error message has the same principal format for all the different requests except for HTTP, see the Service Discovery Example.
           The difference between an error response message and an error event message is that in the former the key name 'requestId' is used,
           in the latter the key name 'serviceId' is used.
           </p>
