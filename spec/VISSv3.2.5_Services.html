@@ -489,18 +489,19 @@
             </section>
 
             <section id="service-discovery">
-            <h2>Service Discovery</h2>
+            <h2>Discover</h2>
             <p>
             Purpose: Retrieve metadata describing one or more services.<br>
             The metadata describes a service and declares its signature.<br>
-            Request arguments, of which path is mandatory:
+            Request arguments, of which path and depth are mandatory:
             <ul>
               <li>path: The path to a node with the node type branch or procedure.</li>
-              <li>filter: A filter defining the addressed resources.</li>
+              <li>depth: The max number of descendant generations that are returned.</li>
               <li>authorization: The authorization token.</li>
             </ul>
             The path must either address a procedure node or a branch node that is not a descendant node to a procedure node.<br>
-            A filter must only be of the variant "resource" and must not be used if the path addresses a branch node.
+            Depth must be an integer greater than or equal to zero. Zero returns all generations.<br>
+            Metadata for all instances of a multiplexed service are returned.
             </p>
             <p>
             Success response arguments of which metadata and timestamp are mandatory:
@@ -876,7 +877,7 @@
            <tbody>
            <tr><th rowspan="5">discoveryRequest</th><td>action</td><td>Action</td><td>Yes</td></tr>
            <tr><td>path</td><td>string</td><td>Yes</td></tr>
-           <tr><td>filter</td><td>object</td><td>Optional (**)</td></tr>
+           <tr><td>depth</td><td>string</td><td>Yes</td></tr>
            <tr><td>authorization</td><td>string</td><td>Optional</td></tr>
            <tr><td>requestId</td><td>string</td><td>Yes</td></tr>
            </tbody>
@@ -893,15 +894,13 @@
             <tr><td>ts</td><td>string</td><td>Yes</td></tr>
             </tbody>
             </table>
-            (**) : A resource variant filter must only be used if the path addresses a procedure node that manages multiple resources,
-            see <a href="#filter-variant-resource">Filter Variant Resource</a>. If present, the metadata in the response is narrowed to
-            the resource(s) selected by the filter.<br>
               <b>Example:</b><br>
               Request:
               <pre><code>
               {
                 "action": "discover",
                 "path": "VehicleService.Seating",
+                "depth": "0",
                 "requestId": "5687"
               }
               </code></pre>
@@ -911,24 +910,6 @@
                 "action": "discover",
                 "metadata": {"Seating":{"MoveSeat":{...}, "ActivateMassage":{...}, ... }},
                 "requestId": "5687",
-                "ts":"2025-04-15T13:37:05Z"
-              }
-              </code></pre>
-              Request with a resource filter narrowing the metadata to a single resource of a multiplexed service:
-              <pre><code>
-              {
-                "action": "discover",
-                "path": "VehicleService.Seating.MoveSeat",
-                "filter": {"variant": "resource", "parameter": ["Row1.DriverSide"]},
-                "requestId": "5688"
-              }
-              </code></pre>
-              Successful response:
-              <pre><code>
-              {
-                "action": "discover",
-                "metadata": {"MoveSeat":{"Row1":{"DriverSide":{...}}}},
-                "requestId": "5688",
                 "ts":"2025-04-15T13:37:05Z"
               }
               </code></pre>
