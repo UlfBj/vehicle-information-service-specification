@@ -21,12 +21,17 @@ Minutes of meetings is found [here](https://covesa.atlassian.net/wiki/spaces/WIK
 
 ## Overview
 
-Vehicle Information Service Specification (VISS) is an API for accessing the COVESA Vehicle Signal Specification (VSS) data. The work started at [The World Wide Web Consortium (W3C)](https://www.w3.org) in collaboration with GENIVI and its successor COVESA. The W3C Automotive Working Group closed in February of 2024 and the work is continuing at COVESA.
+Vehicle Information Service Specification (VISS) is an API that was initially developed for accessing the COVESA Vehicle Signal Specification (VSS) data. The work started at [The World Wide Web Consortium (W3C)](https://www.w3.org) in collaboration with GENIVI and its successor COVESA. The W3C Automotive Working Group closed in February of 2024 and the work is continuing at COVESA.
+
+The access scope of the API was extended in version 3.1 to support vehicle data trees defined for also other types of vehicles such as trucks, trailers, etc.
+
+Version 3.2.5 extends the scope to also include access to vehicle services.
 
 The VISS specification consists of the following documents:
 * Core
 * Transport
 * Payload Encoding
+* Services
 
 The specification is supplemented with the following documents:
 * Implementation Guidelines
