@@ -195,8 +195,7 @@
          adds support for writing multiple signals in a single request message,
          and it also adds a separate request method for signal and forest discovery.<br>
          This specification, the version 3.3, adds support for the
-         <a href= "https://covesa.github.io/hierarchical_information_model/#him-data-profile">HIM data profile</a>
-.
+         <a href= "https://covesa.github.io/hierarchical_information_model/#him-data-profile">HIM data profile</a>.
       </p>
       <p>
          There are three parts to this specification, CORE, [[TRANSPORT]], and
@@ -270,7 +269,7 @@
         This version introduces support for another of the HIM information profiles, the Data profile.
         The VISS documents Core, Transport and Payload Encoding refer to the VehicleData profile.
         The <a href="#data-profile">Data Profile</a> chapter describes the difference to these documents when referring to the Data profile instead.<br>
-        A VISS server must support at least one profile. The server profile support is shown in the server capabilities tree.<br>
+        A VISS server must support at least one profile. The server profile support is shown in the <a href="#server-capabilities">server capabilities tree</a>.<br>
         A tree must define its domain using only one profile. A server may manage a set of trees with mixed profiles.
         </p>
        <section id="vehicledata-profile">
@@ -298,15 +297,15 @@
                </thead>
                <tbody>
                   <tr>
-                     <th rowspan="4">attribute<br>sensor<br>actuator</th>
-                  </tr>
-                  <tr>
+                     <th>attribute</th>
                      <td>ro</td>
                   </tr>
                   <tr>
+                     <th>sensor</th>
                      <td>ro</td>
                   </tr>
                   <tr>
+                     <th>actuator</th>
                      <td>rw</td>
                   </tr>
                </tbody>
@@ -4194,7 +4193,13 @@ delimiter    = "." / "/"
                Support and Config.
             </li>
             <li>
-               The Support node MUST have at least one child named Protocol.
+               The Support node MUST have at least two children named Profile
+               and Protocol.
+            </li>
+            <li>
+               The Profile node MUST be an attribute with a string array
+               datatype with members defining the supported <a href="#profiles">profiles</a>,
+               see <a href="#server-feature-naming"></a> for the profile names to use.
             </li>
             <li>
                The Protocol node MUST be an attribute with a string array
@@ -4214,6 +4219,11 @@ delimiter    = "." / "/"
             type: branch
             description: Top branch declaring the server supported features.
             
+          Server.Support.Profile:
+            type: attribute
+            datatype: string[]
+            description: List of supported profiles.
+          
           Server.Support.Protocol:
             type: attribute
             datatype: string[]
@@ -4382,7 +4392,7 @@ delimiter    = "." / "/"
          Config branch.
       </section>
 
-      <section>
+      <section id="server-feature-naming">
          <h3>Server Feature Naming</h3>
          The feature names that are used in the Server tree should for the
          features described in this specification use the names listed below.
