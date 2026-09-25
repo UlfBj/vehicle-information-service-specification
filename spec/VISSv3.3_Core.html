@@ -1010,12 +1010,11 @@ delimiter    = "." / "/"
             </p>
             <p>
                If the server successfully processes the request, it MUST return
-               a <a>success response</a>, and it MUST stop issuing event
-               messages associated to the subscription handle. If the server
+               a <a>success response</a>. If the server
                fails to fulfill the request, then the server MUST return an
                <a href="#error-message">error message</a>.
             </p>
-            Arguments, of which path and depth is mandatory:
+            Arguments, of which path and depth are mandatory:
             <ul>
                <li>
                   <a>path</a> The path to the node that will act as root for the sub-tree
